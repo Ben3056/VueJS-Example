@@ -1,17 +1,34 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <NavBar />
+    <div class="container">
+      <div class="row">
+        <div class="col-md-2" v-for="image in images" :key="image">
+          <ImagePanel :imgSource="image.src" :imgName="image.imgName" :artistName="image.artistName"/>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
+
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import NavBar from './components/NavBar.vue'
+import ImagePanel from './components/ImagePanel.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    NavBar,
+    ImagePanel
+},
+data() {
+    return {
+      images: [
+        {src: "logo.png", imgName: "Logo", artistName: "Ben X"},
+        {src: "me.jpg", imgName: "Me", artistName: "Ben W"},
+        ]
+    }
   }
 }
 </script>
@@ -23,6 +40,5 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
 </style>
